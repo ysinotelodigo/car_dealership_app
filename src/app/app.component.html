@@ -1,15 +1,26 @@
 <div class="container">
   <div class="jumbotron">
-    <h1>Car Dealership Application</h1>
-    <p>We find you the best car offer</p>
+    <h1><i class="fas fa-car"></i> Car Dealership Application</h1>
+    <p><i class="fas fa-search-dollar"></i> We find the best car offer for our clients</p>
+   
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text bg-primary text-white" >Type to find the client's future car:</span>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="searchText">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button"> <i class="far fa-keyboard mr-1"></i> + <i class="fas fa-search ml-1 mr-1"></i> = <i class="fas fa-shopping-cart ml-1"></i></button>
+      </div>
+    </div>
   </div>
-
-  <table class="table table-striped">
+<div class="table-responsive">
+  <table class="table table-striped text-center  ">
     <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Image</th>
+      <th scope="col">Logo</th>
       <th scope="col">Brands</th>
+      <th scope="col">Image</th>
       <th scope="col">Model</th>
       <th scope="col">Year</th>
       <th scope="col">On Sale From</th>
@@ -19,20 +30,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let car of available; index as i">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>
-        <!--<img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">-->
-        <img [src]="car.image" />
+    <tr *ngFor="let car of available | contains: searchText ; index as i">
+      <th scope="row" class="align-middle">{{ i + 1 }}</th>
+      <td><img [src]="'assets/logos/'+car.icon" style="height: 2em"> </td>
+      <td class="align-middle"> {{ car.brand | uppercase}}</td>
+      <td class="align-middle">
+        <img [src]="'assets/images/'+car.image" style="height: 2em"/>
       </td>
-      <td>{{ car.brand }}</td>
-      <td>{{ car.model }}</td>
-      <td>{{ car.vehicleRegistrationDate| date:'yyyy'}}</td>
-      <td>{{ car.onSaleFrom | date:'MM-yy'}}</td>
-      <td>{{ car.price | currency: '€'}}</td>
-      <td>{{ car.price * 1.21 | currency: '€'}}</td>
+      <td class="align-middle">{{ car.model | lowercase}}</td>
+      <td class="align-middle">{{ car.vehicleRegistrationDate| date:'yyyy'}}</td>
+      <td class="align-middle">{{ car.onSaleFrom | date:'MM-yy'}}</td>
+      <td class="align-middle">{{ car.price | currency:'EUR':'symbol':'3.2-2':'es'}}</td>
+      <td class="align-middle">{{ car.price * 1.21 | currency:'EUR':'symbol':'3.2-2':'es'}}</td>
       <td>
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <div class="btn-group" role="group" >
           <button type="button" class="btn btn-danger" (click)="getSale(car)"> Get Sale </button>
           <button type="button" class="btn btn-success" (click)="removeCar(car)"> Sold </button>
       </div>
@@ -40,5 +51,5 @@
     </tr>
     </tbody>
   </table>  
-
+</div>
 </div>
