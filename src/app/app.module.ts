@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {ContainsPipe} from './contains.pipe';
+import {StatePipe} from './state.pipe';
 
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
@@ -15,7 +16,8 @@ registerLocaleData(localeEs, 'es');
 @NgModule({
   declarations: [
     AppComponent,
-    ContainsPipe
+    ContainsPipe,
+    StatePipe
   ],
   imports: [
     BrowserModule,

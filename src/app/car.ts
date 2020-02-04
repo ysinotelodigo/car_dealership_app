@@ -6,8 +6,9 @@ export class Car{
     private _onSaleFrom:Date;
     private _price:number;
     private _icon:string;
+    private _state:string;
 
-    constructor(image:string,branch:string,model:string,year:Date,onSaleFrom:Date,price:number,icon:string){
+    constructor(image:string,branch:string,model:string,year:Date,onSaleFrom:Date,price:number,icon:string, state:string){
         this._image = image;
         this._brand = branch;
         this._model = model;
@@ -15,6 +16,7 @@ export class Car{
         this._onSaleFrom = onSaleFrom;
         this._price = price;
         this._icon = icon;
+        this._state = state;
     }
 
     public get image(): string {
@@ -71,5 +73,13 @@ export class Car{
 
     public set icon(icon: string) {     
         this._icon = icon;
+    }
+
+    public get state(): string {
+        return this._state;
+    }
+
+    public set state(state: string) {     
+        this._state = state;
     }
 }
